@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "468155400409",
+    "project_id": "bk-musics",
+    "storage_bucket": "bk-musics.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468155400409:android:885bf0c495948fc40e7ec8",
+        "android_client_info": {
+          "package_name": "com.example.bk_musics"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "468155400409-l67fqsotouph2u6ptf122s03j404hrfb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqzbWi3RMZSw6BYdb2FLtU7359AZO9N5I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "468155400409-l67fqsotouph2u6ptf122s03j404hrfb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

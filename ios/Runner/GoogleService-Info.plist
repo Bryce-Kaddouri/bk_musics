@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>468155400409-ii70cmb64bmi07ab7b3ic90fkm50dfik.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.468155400409-ii70cmb64bmi07ab7b3ic90fkm50dfik</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDnvkhGqxdfpILzBzECg12Gsz95iuD5Fhc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>468155400409</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.bkMusics</string>
+	<key>PROJECT_ID</key>
+	<string>bk-musics</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bk-musics.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:468155400409:ios:428535d34b2bab450e7ec8</string>
+</dict>
+</plist>
