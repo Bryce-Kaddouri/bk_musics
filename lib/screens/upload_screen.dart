@@ -136,10 +136,6 @@ class UploadScreen extends StatelessWidget {
                                           50.0),
                                     ),
                                     onPressed: () async {
-                                      onProgressUpdate(double progress) {
-                                        print('progress: $progress');
-                                      }
-
                                       if (_formKey.currentState!.validate()) {
                                         print(
                                             'uploadProvider.uploadFile: ${uploadProvider.bytes}');
@@ -149,7 +145,6 @@ class UploadScreen extends StatelessWidget {
                                           genreController.text,
                                           titleController.text,
                                         );
-                                        print('task: $task');
                                       }
                                     },
                                     child: Text('Upload MP3'),

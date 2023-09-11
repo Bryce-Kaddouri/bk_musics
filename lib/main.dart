@@ -37,12 +37,14 @@ class MyApp extends StatelessWidget {
                 UploadProvider()), // Initialize the UploadProvider
         // Add more providers here as needed
         ChangeNotifierProvider(
-            create: (context) => AudioProvider(
-                  audioPlayer: AudioPlayer(),
-                )),
+          create: (context) => AudioProvider(
+            audioPlayer: AudioPlayer(),
+          ),
+        ),
       ],
       child: MaterialApp(
-        title: 'My Music App',
+        debugShowCheckedModeBanner: false,
+        title: 'BK Musics',
         theme: themeData,
         home: AuthWrapper(),
       ),

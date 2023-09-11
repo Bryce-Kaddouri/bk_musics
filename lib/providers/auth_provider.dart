@@ -9,20 +9,15 @@ class AuthProvider extends ChangeNotifier {
 
   Stream<User?> get userStream => _auth.authStateChanges();
 
-
   Future<void> signInWithEmailAndPassword(String email, String password) async {
     try {
       final result = await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      print(result);
       _user = result.user;
-      print(_user);
       notifyListeners();
       if (_user != null) {
-
-
         Navigator.of(_scaffoldContext!).pushReplacement(
           MaterialPageRoute(builder: (context) => HomeScreen()),
         );
@@ -59,7 +54,6 @@ class AuthProvider extends ChangeNotifier {
     _user = null;
     notifyListeners();
   }
-
 
   // Handle Firebase Auth exceptions and return an error message.
   String _handleAuthError(dynamic e) {

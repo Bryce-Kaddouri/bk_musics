@@ -8,49 +8,54 @@ class AudioProvider with ChangeNotifier {
   AudioPlayerState audioPlayerState = AudioPlayerState.stopped;
   Duration? duration;
   Duration? position;
-  int currentIndex = 0;
+  int? currentIndex;
+  bool isOnTap = true;
 
   AudioProvider({required AudioPlayer audioPlayer})
       : _audioPlayer = audioPlayer;
 
-  Future<void> playMusicFromUrl(String url, int index) async {
-    print('Playing music from URL: $url');
-    print('Index: $index');
+  Future<void> playMusicFromUrl(String url, int? index) async {
+    audioPlayerState = AudioPlayerState.playing;
+    currentIndex = index;
+    position = Duration.zero;
+    isOnTap = true;
+    notifyListeners();
     try {
       //stop the previous music
       if (audioPlayerState == AudioPlayerState.playing) {
         await _audioPlayer.stop();
       }
-      await _audioPlayer.setUrl(url);
+      Duration? duration = await _audioPlayer.setUrl(url);
+      if (duration != null) {
+        this.duration = duration;
+      }
       await _audioPlayer.play();
-      audioPlayerState = AudioPlayerState.playing;
-      currentIndex = index;
     } catch (e) {
       print('Error playing audio from URL: $e');
     }
-    notifyListeners();
   }
 
   Future<void> pauseMusic() async {
-    await _audioPlayer.pause();
     audioPlayerState = AudioPlayerState.paused;
     notifyListeners();
+    await _audioPlayer.pause();
   }
 
   Future<void> stopMusic() async {
-    await _audioPlayer.stop();
     audioPlayerState = AudioPlayerState.stopped;
     notifyListeners();
+    await _audioPlayer.stop();
   }
 
   Future<void> resumeMusic() async {
-    await _audioPlayer.play();
     audioPlayerState = AudioPlayerState.playing;
     notifyListeners();
+    await _audioPlayer.play();
   }
 
   void seekToSecond(int second) {
     Duration newDuration = Duration(seconds: second);
+
     _audioPlayer.seek(newDuration);
   }
 
@@ -75,4 +80,8 @@ class AudioProvider with ChangeNotifier {
     position = null;
     notifyListeners();
   }
+
+  //stream the position and duration of the audio
+  Stream<Duration?> get durationStream => _audioPlayer.durationStream;
+  Stream<Duration?> get positionStream => _audioPlayer.positionStream;
 }
