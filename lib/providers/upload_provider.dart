@@ -18,12 +18,15 @@ class UploadProvider with ChangeNotifier {
   List<Music> musicList = [];
   BuildContext? context;
   double uploadProgress = 0;
+  bool isRequesting = false;
 
   void setContext(BuildContext context) {
     this.context = context;
   }
 
   Future<void> pickFile() async {
+    isRequesting = true;
+    notifyListeners();
     final FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowMultiple: false,
@@ -40,6 +43,9 @@ class UploadProvider with ChangeNotifier {
 
       notifyListeners();
     }
+
+    isRequesting = false;
+    notifyListeners();
   }
 
   Future<TaskSnapshot?> uploadFile(
@@ -47,12 +53,12 @@ class UploadProvider with ChangeNotifier {
     String genre,
     String title,
   ) async {
+    isUploading = true;
+    notifyListeners();
+
     if (filePath == null && bytes == null) {
       return null; // No file selected, return null
     }
-
-    isUploading = true;
-    notifyListeners();
 
     DateTime now = DateTime.now();
     String formattedDate =
@@ -117,6 +123,9 @@ class UploadProvider with ChangeNotifier {
         ),
       );
     });
+
+    isRequesting = false;
+    notifyListeners();
 
     // Return the Task object for further handling if needed
     return task;

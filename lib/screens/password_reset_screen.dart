@@ -35,7 +35,6 @@ class PasswordResetScreen extends StatelessWidget {
                 authProvider.resetPassword(emailController.text);
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-
                     backgroundColor: Colors.green,
                     closeIconColor: Colors.white,
                     showCloseIcon: true,
@@ -48,7 +47,11 @@ class PasswordResetScreen extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('Send Reset Email'),
+              child: authProvider.isRequesting
+                  ? CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    )
+                  : Text('Reset Password'),
             ),
           ],
         ),

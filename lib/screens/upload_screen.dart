@@ -46,7 +46,7 @@ class UploadScreen extends StatelessWidget {
                         style: TextStyle(fontSize: 20.0)),
                     SizedBox(height: 20.0),
                     if (uploadProvider.name == null)
-                      ElevatedButton.icon(
+                      ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Colors.blue,
                           onPrimary: Colors.white,
@@ -57,8 +57,23 @@ class UploadScreen extends StatelessWidget {
                         onPressed: () {
                           uploadProvider.pickFile();
                         },
+/*
                         icon: Icon(Icons.music_note),
-                        label: Text('Pick an MP3 File'),
+*/
+                        /*label: Text('Pick an MP3 File'),*/
+                        child: uploadProvider.isRequesting
+                            ? CircularProgressIndicator(
+                                valueColor:
+                                    AlwaysStoppedAnimation<Color>(Colors.white),
+                              )
+                            : Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.music_note),
+                                  SizedBox(width: 10.0),
+                                  Text('Pick an MP3 File'),
+                                ],
+                              ),
                       ),
                     if (uploadProvider.name != null)
                       ListTile(
@@ -147,7 +162,21 @@ class UploadScreen extends StatelessWidget {
                                         );
                                       }
                                     },
-                                    child: Text('Upload MP3'),
+                                    child: uploadProvider.isRequesting
+                                        ? CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                                    Colors.white),
+                                          )
+                                        : Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Icon(Icons.cloud_upload),
+                                              SizedBox(width: 10.0),
+                                              Text('Upload MP3 File'),
+                                            ],
+                                          ),
                                   ),
                                 ],
                               ),

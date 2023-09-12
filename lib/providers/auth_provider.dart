@@ -6,10 +6,13 @@ import '../screens/home_screen.dart';
 class AuthProvider extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   User? _user;
+  bool isRequesting = false;
 
   Stream<User?> get userStream => _auth.authStateChanges();
 
   Future<void> signInWithEmailAndPassword(String email, String password) async {
+    isRequesting = true;
+    notifyListeners();
     try {
       final result = await _auth.signInWithEmailAndPassword(
         email: email,
@@ -39,14 +42,21 @@ class AuthProvider extends ChangeNotifier {
         ),
       );
     }
+    isRequesting = false;
+    notifyListeners();
   }
 
   Future<void> resetPassword(String email) async {
+    isRequesting = true;
+    notifyListeners();
     try {
       await _auth.sendPasswordResetEmail(email: email);
     } catch (e) {
       print('Error: $e');
     }
+
+    isRequesting = false;
+    notifyListeners();
   }
 
   Future<void> signOut() async {
